@@ -7,28 +7,31 @@ option java_outer_classname = "KeyManager";
 package br.com.zup.edu;
 
 service KeyManagerService {
-  rpc send (KeyManagerRequest) returns (KeyManagerResponse) {}
+  rpc cadastra (KeyManagerRequest) returns (KeyManagerResponse) {}
 }
 
-enum Chave {
-  CPF = 0;
-  CELULAR = 1;
+enum ChaveTipo {
+  CHAVE_UNSPECIFIED = 0;
+  CPF = 1;
   EMAIL = 2;
-  CHAVE_ALEATORIA = 3;
+  CELULAR = 3;
+  CHAVE_ALEATORIA = 4;
 }
 
 enum ContaTipo {
-  CONTA_CORRENTE =0;
-  CONTA_POUPANCA = 1;
+  CONTA_TIPO_UNSPECIFIED = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
 }
 
 message KeyManagerRequest {
   string idClient = 1;
-  Chave chave = 2;
-  ContaTipo conta_tipo = 3;
+  ChaveTipo chave_tipo = 2;
+  string valor_chave = 3;
+  ContaTipo conta_tipo = 4;
 }
 
 message KeyManagerResponse {
-  int64 pix_id = 1;
+  string pix_id = 1;
 }
 

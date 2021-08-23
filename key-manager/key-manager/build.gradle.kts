@@ -43,9 +43,10 @@ dependencies {
     //JPA
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("org.postgresql:postgresql:42.2.18")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-    runtimeOnly("com.h2database:h2")
+    testImplementation("com.h2database:h2")
 
     testImplementation("io.micronaut:micronaut-http-client")
 
