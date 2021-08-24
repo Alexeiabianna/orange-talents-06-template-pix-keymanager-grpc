@@ -7,9 +7,14 @@ import br.com.zup.edu.grpc.ErrorHandler
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
+import java.lang.IllegalStateException
 
 @Singleton
-open class CadastroChavePix(val chaveRepository: ChaveRepository): KeyManagerServiceGrpc.KeyManagerServiceImplBase() {
+open class CadastroChavePix(
+    val chaveRepository: ChaveRepository,
+    val clientContasERP: ClientContasERP
+
+    ): KeyManagerServiceGrpc.KeyManagerServiceImplBase() {
 
     private val logger = LoggerFactory.getLogger(CadastroChavePix::class.java)
 
@@ -27,7 +32,15 @@ open class CadastroChavePix(val chaveRepository: ChaveRepository): KeyManagerSer
             throw ChaveExistenteException("Registro de chave existente")
         }
 
-        val chavePix = chavePixRequest.toModel()
+        val responseClient = clientContasERP.consultaConta(
+            chavePixRequest.idCliente,
+            chavePixRequest.tipoConta!!.name)
+
+        logger.info(chavePixRequest.idCliente, chavePixRequest.tipoChave.toString())
+
+        val conta = responseClient.body()?.toModel() ?: throw IllegalStateException("Cliente não consta no sistema")
+
+        val chavePix = chavePixRequest.toModel(conta)
         chaveRepository.save(chavePix)
 
         val response = KeyManagerResponse.newBuilder()
@@ -37,7 +50,4 @@ open class CadastroChavePix(val chaveRepository: ChaveRepository): KeyManagerSer
         responseObserver?.onNext(response)
         responseObserver?.onCompleted()
     }
-
-
-
 }

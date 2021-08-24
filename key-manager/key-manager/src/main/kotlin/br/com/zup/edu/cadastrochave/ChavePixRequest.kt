@@ -38,7 +38,7 @@ class ChavePixRequest(val request: KeyManagerRequest?) {
             if (chaveValue.matches("^\\([1-9]{2}\\) (?:[2-8]|9[1-9])[0-9]{3}\\-[0-9]{4}\$".toRegex()))
                 return chaveValue
         }
-        return throw FormatoInvalidoException("Formato ${tipoChave.toString()} inválido")
+        return throw FormatoInvalidoException("Formato ${tipoChave.toString()} inválido ou nulo")
     }
 
     fun geraChaveAleatoria(): String {
@@ -50,7 +50,13 @@ class ChavePixRequest(val request: KeyManagerRequest?) {
         return UUID.fromString(this.idCliente)
     }
 
-    fun toModel(): ChavePix {
-        return ChavePix(converteIdCliente(), this.tipoChave, validatorFormat(this.chaveValue), this.tipoConta)
+    fun toModel(conta: ContaAssociada): ChavePix {
+        return ChavePix(
+            idCliente = converteIdCliente(),
+            tipoChave = this.tipoChave,
+            chaveValue = validatorFormat(this.chaveValue),
+            tipoConta = this.tipoConta,
+            conta = conta
+        )
     }
 }

@@ -39,6 +39,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-http-client")
+
 
     //JPA
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")

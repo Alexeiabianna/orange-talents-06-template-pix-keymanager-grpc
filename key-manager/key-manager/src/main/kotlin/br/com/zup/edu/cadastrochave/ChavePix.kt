@@ -3,6 +3,7 @@ package br.com.zup.edu.cadastrochave
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
+import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
@@ -20,7 +21,11 @@ class ChavePix(
 
     @Enumerated(value = EnumType.STRING)
     @field:NotNull
-    val tipoConta: TipoConta
+    val tipoConta: TipoConta,
+
+    @field:Valid
+    @Embedded
+    val conta: ContaAssociada
 ) {
     @Id
     @GeneratedValue
