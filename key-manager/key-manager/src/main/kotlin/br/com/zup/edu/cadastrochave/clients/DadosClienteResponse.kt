@@ -1,4 +1,6 @@
-package br.com.zup.edu.cadastrochave
+package br.com.zup.edu.cadastrochave.clients
+
+import br.com.zup.edu.cadastrochave.model.ContaAssociada
 
 data class DadosClienteResponse(
     val tipo: String,

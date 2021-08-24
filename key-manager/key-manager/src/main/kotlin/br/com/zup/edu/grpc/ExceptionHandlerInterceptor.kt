@@ -1,7 +1,7 @@
 package br.com.zup.edu.grpc
 
-import br.com.zup.edu.cadastrochave.ChaveExistenteException
-import br.com.zup.edu.cadastrochave.FormatoInvalidoException
+import br.com.zup.edu.cadastrochave.controllers.ChaveExistenteException
+import br.com.zup.edu.cadastrochave.controllers.FormatoInvalidoException
 import com.google.rpc.BadRequest
 import io.grpc.BindableService
 import io.grpc.Status

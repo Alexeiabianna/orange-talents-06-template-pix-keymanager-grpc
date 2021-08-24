@@ -17,6 +17,6 @@ jpa:
         hbm2ddl:
           auto: create-drop
 
-erp:
-  contas:
-    url: ${URL_ERP_BANCO:`http://localhost:9091/api/v1/clientes/`
+clients:
+     erp:
+      url: ${URL_ERP_BANCO:`http://localhost:9091/api/v1/clientes/`}

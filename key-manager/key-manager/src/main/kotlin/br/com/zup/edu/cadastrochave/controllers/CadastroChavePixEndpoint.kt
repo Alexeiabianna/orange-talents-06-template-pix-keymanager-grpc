@@ -1,8 +1,10 @@
-package br.com.zup.edu.cadastrochave
+package br.com.zup.edu.cadastrochave.controllers
 
 import br.com.zup.edu.KeyManagerRequest
 import br.com.zup.edu.KeyManagerResponse
 import br.com.zup.edu.KeyManagerServiceGrpc
+import br.com.zup.edu.cadastrochave.clients.ClientContasERP
+import br.com.zup.edu.cadastrochave.repository.ChaveRepository
 import br.com.zup.edu.grpc.ErrorHandler
 import io.grpc.stub.StreamObserver
 import jakarta.inject.Singleton

@@ -1,6 +1,10 @@
-package br.com.zup.edu.cadastrochave
+package br.com.zup.edu.cadastrochave.controllers
 
 import br.com.zup.edu.KeyManagerRequest
+import br.com.zup.edu.cadastrochave.model.ChavePix
+import br.com.zup.edu.cadastrochave.model.ContaAssociada
+import br.com.zup.edu.cadastrochave.model.TipoChave
+import br.com.zup.edu.cadastrochave.model.TipoConta
 import br.com.zup.edu.grpc.ErrorHandler
 import java.util.*
 import javax.validation.constraints.NotBlank

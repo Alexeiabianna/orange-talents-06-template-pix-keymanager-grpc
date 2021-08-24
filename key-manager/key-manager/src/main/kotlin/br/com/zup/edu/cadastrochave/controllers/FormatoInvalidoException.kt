@@ -1,4 +1,4 @@
-package br.com.zup.edu.cadastrochave
+package br.com.zup.edu.cadastrochave.controllers
 
 class FormatoInvalidoException(s: String) : RuntimeException(s) {
 

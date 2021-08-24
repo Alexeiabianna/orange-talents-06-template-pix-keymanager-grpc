@@ -1,4 +1,4 @@
-package br.com.zup.edu.cadastrochave
+package br.com.zup.edu.cadastrochave.model
 
 enum class TipoChave {
     CPF,
