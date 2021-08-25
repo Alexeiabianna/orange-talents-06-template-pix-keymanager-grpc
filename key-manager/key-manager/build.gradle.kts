@@ -51,6 +51,7 @@ dependencies {
     testImplementation("com.h2database:h2")
 
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
 
 }
 
