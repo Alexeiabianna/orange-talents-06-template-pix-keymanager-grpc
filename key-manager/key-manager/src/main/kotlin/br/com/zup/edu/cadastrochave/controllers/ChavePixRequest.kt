@@ -6,14 +6,17 @@ import br.com.zup.edu.cadastrochave.model.ContaAssociada
 import br.com.zup.edu.cadastrochave.model.TipoChave
 import br.com.zup.edu.cadastrochave.model.TipoConta
 import br.com.zup.edu.grpc.ErrorHandler
+import io.micronaut.validation.Validated
 import java.util.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @ErrorHandler
+@Validated
 class ChavePixRequest(val request: KeyManagerRequest?) {
 
     @field:NotBlank
+    @field:ValidUUID
     val idCliente: String = request!!.idClient
 
     @field:NotNull

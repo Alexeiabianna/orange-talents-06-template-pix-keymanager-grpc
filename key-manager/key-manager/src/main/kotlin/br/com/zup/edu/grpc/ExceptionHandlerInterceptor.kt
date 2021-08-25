@@ -11,6 +11,7 @@ import io.grpc.stub.StreamObserver
 import io.micronaut.aop.InterceptorBean
 import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
+import io.micronaut.http.client.exceptions.HttpClientException
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
 import javax.validation.ConstraintViolationException
@@ -38,6 +39,7 @@ class ExceptionHandlerInterceptor : MethodInterceptor<BindableService, Any> {
              * IllegalStateException -> FAILED_PRECONDITION
              */
             val statusError = when (e) {
+                is HttpClientException -> Status.INVALID_ARGUMENT.withDescription("Requisição inválida").asRuntimeException()
                 is IllegalArgumentException -> Status.INVALID_ARGUMENT.withDescription(e.message).asRuntimeException()
                 is FormatoInvalidoException -> Status.INVALID_ARGUMENT.withDescription(e.message).asRuntimeException()
                 is IllegalStateException -> Status.FAILED_PRECONDITION.withDescription(e.message).asRuntimeException()
