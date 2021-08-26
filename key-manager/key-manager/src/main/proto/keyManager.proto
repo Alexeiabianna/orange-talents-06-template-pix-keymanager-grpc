@@ -10,6 +10,10 @@ service KeyManagerService {
   rpc cadastra (KeyManagerRequest) returns (KeyManagerResponse) {}
 }
 
+service KeyManagerServiceDelete {
+  rpc deleta (KeyManagerDeleteRequest) returns (KeyManagerDeleteResponse) {}
+}
+
 enum ChaveTipo {
   CHAVE_UNSPECIFIED = 0;
   CPF = 1;
@@ -35,3 +39,12 @@ message KeyManagerResponse {
   string pix_id = 1;
 }
 
+message KeyManagerDeleteRequest {
+  string pix_id = 1;
+  string id_client = 2;
+}
+
+message  KeyManagerDeleteResponse {
+  string pix_id = 1;
+  string id_client = 2;
+}

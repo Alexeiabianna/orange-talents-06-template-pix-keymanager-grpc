@@ -1,6 +1,7 @@
 package br.com.zup.edu.grpc
 
 import br.com.zup.edu.cadastrochave.controllers.ChaveExistenteException
+import br.com.zup.edu.cadastrochave.controllers.ChaveNaoExisteException
 import br.com.zup.edu.cadastrochave.controllers.FormatoInvalidoException
 import com.google.rpc.BadRequest
 import io.grpc.BindableService
@@ -39,6 +40,7 @@ class ExceptionHandlerInterceptor : MethodInterceptor<BindableService, Any> {
              * IllegalStateException -> FAILED_PRECONDITION
              */
             val statusError = when (e) {
+                is ChaveNaoExisteException -> Status.NOT_FOUND.withDescription(e.message).asRuntimeException()
                 is HttpClientException -> Status.INVALID_ARGUMENT.withDescription("Requisição inválida").asRuntimeException()
                 is IllegalArgumentException -> Status.INVALID_ARGUMENT.withDescription(e.message).asRuntimeException()
                 is FormatoInvalidoException -> Status.INVALID_ARGUMENT.withDescription(e.message).asRuntimeException()
