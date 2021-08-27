@@ -10,6 +10,7 @@ import io.grpc.stub.StreamObserver
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
 import java.lang.IllegalStateException
+import javax.transaction.Transactional
 
 @Singleton
 open class CadastroChavePix(
@@ -21,6 +22,7 @@ open class CadastroChavePix(
     private val logger = LoggerFactory.getLogger(CadastroChavePix::class.java)
 
     @ErrorHandler
+    @Transactional
     override fun cadastra(request: KeyManagerRequest?,
                           responseObserver: StreamObserver<KeyManagerResponse>?)
     {
